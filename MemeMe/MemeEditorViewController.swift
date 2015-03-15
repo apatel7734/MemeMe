@@ -16,7 +16,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     
     @IBOutlet weak var memeImageView: UIImageView!
     
-    let memeTextAttributes = [NSStrokeColorAttributeName: UIColor.blackColor(),NSForegroundColorAttributeName: UIColor.whiteColor(),NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,NSStrokeWidthAttributeName: 1]
+    let memeTextAttributes = [NSForegroundColorAttributeName: UIColor(white: 1, alpha: 1),NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 30)!,NSStrokeColorAttributeName:UIColor(red: 0, green: 0, blue: 0, alpha: 1)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +24,14 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         // Do any additional setup after loading the view, typically from a nib.
         topTextField.delegate = self
         topTextField.text = "TOP"
+        topTextField.defaultTextAttributes = memeTextAttributes
+        topTextField.textAlignment = .Center
         
-        //        topTextField.defaultTextAttributes = memeTextAttributes
+        
         bottomTextField.delegate = self
         bottomTextField.text = "BOTTOM"
-        
-        //        bottomTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.textAlignment = .Center
     }
     
     
@@ -78,9 +80,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        //        if(textField.text == "TOP" || textField.text == "BOTTOM"){
-        //            textField.text = ""
-        //        }
+        textField.text = ""
     }
     
     
