@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		757BFAC61AB79FD100F93E38 /* test_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 757BFAC51AB79FD100F93E38 /* test_image.jpg */; };
 		75FE05C71AB3B43B000044B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FE05C61AB3B43B000044B2 /* AppDelegate.swift */; };
 		75FE05C91AB3B43B000044B2 /* MemeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FE05C81AB3B43B000044B2 /* MemeEditorViewController.swift */; };
 		75FE05CC1AB3B43B000044B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75FE05CA1AB3B43B000044B2 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		757BFAC51AB79FD100F93E38 /* test_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_image.jpg; sourceTree = "<group>"; };
 		75FE05C11AB3B43B000044B2 /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75FE05C51AB3B43B000044B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75FE05C61AB3B43B000044B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			children = (
 				75FE05C61AB3B43B000044B2 /* AppDelegate.swift */,
 				75FE05C81AB3B43B000044B2 /* MemeEditorViewController.swift */,
+				757BFAC51AB79FD100F93E38 /* test_image.jpg */,
 				75FE05CA1AB3B43B000044B2 /* Main.storyboard */,
 				75FE05CD1AB3B43B000044B2 /* Images.xcassets */,
 				75FE05CF1AB3B43B000044B2 /* LaunchScreen.xib */,
@@ -192,6 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				757BFAC61AB79FD100F93E38 /* test_image.jpg in Resources */,
 				75FE05CC1AB3B43B000044B2 /* Main.storyboard in Resources */,
 				75FE05D11AB3B43B000044B2 /* LaunchScreen.xib in Resources */,
 				75FE05CE1AB3B43B000044B2 /* Images.xcassets in Resources */,
