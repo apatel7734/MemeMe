@@ -12,8 +12,14 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
     
     var memes: [Meme]!
     
+    @IBOutlet weak var memeTableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        memeTableView.delegate = self
+        memeTableView.dataSource = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -34,7 +40,11 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
     
     //#pragma mark - UITableViewDatasource delegate methods
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("memetablecell") as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("memetablecell") as MemeTableViewCell
+        var meme = self.memes[indexPath.row]
+        
+        cell.memeUITextField.text = meme.topText
+        cell.memedUIImageView.image = meme.memeImage
         
         return cell
         
