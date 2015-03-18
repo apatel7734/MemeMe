@@ -37,6 +37,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         bottomTextField.text = "BOTTOM"
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = .Center
+        println("Origin Y = \(self.view.frame.origin.y)")
     }
     
     
@@ -51,6 +52,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         println("Did finish picking image")
+        memeImageView.image = image
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -87,7 +89,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-//        textField.text = ""
+        //        textField.text = ""
     }
     
     
@@ -98,14 +100,22 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         return false
     }
     
+    var alreadyCalled = false
+    
     func keyboardWillShow(notification: NSNotification){
-        println("keyboardWillShow height = \(getKeyboardHeight(notification))")
-        self.view.frame.origin.y -= getKeyboardHeight(notification)
+        if(!alreadyCalled){
+            self.view.frame.origin.y = self.view.frame.origin.y  - getKeyboardHeight(notification)
+            println("keyboardWillShow Y after = \(self.view.frame.origin.y)")
+            alreadyCalled = true
+        }
     }
     
     func keyboardWillHide(notification: NSNotification){
-        println("keyboardWillHide height = \(getKeyboardHeight(notification))")
-        self.view.frame.origin.y += getKeyboardHeight(notification)
+        if(alreadyCalled){
+            self.view.frame.origin.y += getKeyboardHeight(notification)
+            println("keyboardWillHide Y after = \(self.view.frame.origin.y)")
+            alreadyCalled = false
+        }
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat{
