@@ -16,16 +16,24 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     
     @IBOutlet weak var memeImageView: UIImageView!
     
+    @IBOutlet weak var cameraBarButton: UIBarButtonItem!
+    
     let memeTextAttributes = [NSForegroundColorAttributeName: UIColor(white: 1, alpha: 1),NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 30)!,NSStrokeColorAttributeName:UIColor(red: 0, green: 0, blue: 0, alpha: 1)]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //check if camera available on device.
+        if(!UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
+            cameraBarButton.enabled = false
+        }
         
     }
     
     
     override func viewWillAppear(animated: Bool) {
         self.subscribeToKeyboardNotifications()
+        
         // Do any additional setup after loading the view, typically from a nib.
         topTextField.delegate = self
         topTextField.text = "TOP"
@@ -134,7 +142,6 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardWillShowNotification)
         NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardWillHideNotification)
     }
-    
     
 }
 
