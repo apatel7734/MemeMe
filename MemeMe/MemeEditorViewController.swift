@@ -37,7 +37,8 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         bottomTextField.text = "BOTTOM"
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = .Center
-        println("Origin Y = \(self.view.frame.origin.y)")
+     
+        var alreadyCalled = false
     }
     
     
@@ -120,7 +121,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat{
         let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as NSValue // of CGRect
         return keyboardSize.CGRectValue().height
     }
     
