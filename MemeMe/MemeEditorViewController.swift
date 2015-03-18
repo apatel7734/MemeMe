@@ -18,6 +18,8 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     
     @IBOutlet weak var cameraBarButton: UIBarButtonItem!
     
+    @IBOutlet weak var shareBarButton: UIBarButtonItem!
+    
     let memeTextAttributes = [NSForegroundColorAttributeName: UIColor(white: 1, alpha: 1),NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 30)!,NSStrokeColorAttributeName:UIColor(red: 0, green: 0, blue: 0, alpha: 1)]
     
     
@@ -27,9 +29,9 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         if(!UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
             cameraBarButton.enabled = false
         }
+        shareBarButton.enabled = false
         
     }
-    
     
     override func viewWillAppear(animated: Bool) {
         self.subscribeToKeyboardNotifications()
@@ -45,8 +47,13 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         bottomTextField.text = "BOTTOM"
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = .Center
-     
+        
         var alreadyCalled = false
+    }
+    
+    
+    @IBAction func saveMemeActionClicked(sender: AnyObject) {
+        presentActivityViewController()
     }
     
     
@@ -54,14 +61,13 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         self.unsubscribeFromKeyboardNotification()
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
+    //pragma mark - ImagePickerController methodss
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         println("Did finish picking image")
         memeImageView.image = image
+        
+        //enable bar button
+        shareBarButton.enabled = true
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -80,7 +86,6 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         self.startImagePicker(UIImagePickerControllerSourceType.PhotoLibrary)
     }
     
-    
     //start ImagePicker to pick an image from camera OR Photo Library
     func startImagePicker(sourceType: UIImagePickerControllerSourceType){
         
@@ -91,13 +96,18 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         
     }
     
-    //pragma mark
+    //pragma mark textfield methods
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         return true
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.text = ""
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     
@@ -146,6 +156,37 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     func unsubscribeFromKeyboardNotification(){
         NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardWillShowNotification)
         NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardWillHideNotification)
+    }
+    
+    //render view to an image.
+    func generateMemedImage() -> UIImage{
+        //begin image context
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        //end image context
+        return memedImage
+    }
+    
+    func presentActivityViewController(){
+        var memedImage:UIImage = generateMemedImage()
+        let controller = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        controller.completionWithItemsHandler = {
+            (activity,success,items,error) in
+            if(success){
+                self.saveMeme(memedImage)
+            }
+        }
+        presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    //save meme to shared object.
+    func saveMeme(memedImage: UIImage){
+        var meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, origImage: memeImageView.image!, memeImage: memedImage)
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as AppDelegate
+        appDelegate.memes.append(meme)
     }
     
 }

@@ -10,9 +10,15 @@ import UIKit
 
 class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
+    var memes: [Meme]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        memes = appDelegate.memes
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,7 +41,8 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        println("memes.count = \(memes.count)")
+        return memes.count
     }
     
     
