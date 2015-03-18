@@ -91,17 +91,17 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         
     }
     
-    
-    
+    //pragma mark
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         return true
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        //        textField.text = ""
+        textField.text = ""
     }
     
     
+    //check if top textfield is clicked or bottom.
     func isTopTextClicked(textField: UITextField) -> Bool{
         if(textField.restorationIdentifier == "top"){
             return true
@@ -111,6 +111,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     
     var alreadyCalled = false
     
+    //method being called when keyboard is shown.
     func keyboardWillShow(notification: NSNotification){
         if(!alreadyCalled){
             self.view.frame.origin.y = self.view.frame.origin.y  - getKeyboardHeight(notification)
@@ -119,6 +120,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         }
     }
     
+    //method being called when keyboard is hidden.
     func keyboardWillHide(notification: NSNotification){
         if(alreadyCalled){
             self.view.frame.origin.y += getKeyboardHeight(notification)
@@ -127,17 +129,20 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         }
     }
     
+    //get keyboard height
     func getKeyboardHeight(notification: NSNotification) -> CGFloat{
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as NSValue // of CGRect
         return keyboardSize.CGRectValue().height
     }
     
+    //subscribe to keyboard hide and show notifications
     func subscribeToKeyboardNotifications(){
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
+    //unsubscribe to keyboard hide and show notifications
     func unsubscribeFromKeyboardNotification(){
         NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardWillShowNotification)
         NSNotificationCenter.defaultCenter().removeObserver(UIKeyboardWillHideNotification)
