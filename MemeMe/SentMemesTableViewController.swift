@@ -45,7 +45,7 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
         var cell = tableView.dequeueReusableCellWithIdentifier("memetablecell") as MemeTableViewCell
         var meme = self.memes[indexPath.row]
         
-        cell.memeUITextField.text = meme.topText
+        cell.memeUITextField.text = "\(meme.topText!) \(meme.bottomText!)"
         cell.memedUIImageView.image = meme.memeImage
         
         return cell
