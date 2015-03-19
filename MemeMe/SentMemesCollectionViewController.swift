@@ -40,6 +40,13 @@ class SentMemesCollectionViewController: UIViewController,UICollectionViewDelega
         return memes.count
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        //code only push viewcontroller
+        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var memeDetailsVC = storyboard.instantiateViewControllerWithIdentifier("memedetailsvc") as MemeDetailsViewController
+        memeDetailsVC.meme = self.memes[indexPath.row]
+        self.navigationController?.pushViewController(memeDetailsVC, animated: true)
+    }
     
     /*
     // MARK: - Navigation

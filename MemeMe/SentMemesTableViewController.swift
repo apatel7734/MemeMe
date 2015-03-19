@@ -32,9 +32,10 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
         // Dispose of any resources that can be recreated.
     }
     
+    var selectedRow = 0
     //#pragma mark - UITableViewDelegate methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        selectedRow = indexPath.row
     }
     
     
@@ -56,6 +57,13 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
     }
     
     
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "tomemedetailssegue"){
+            let destinationVC = segue.destinationViewController as MemeDetailsViewController
+            destinationVC.meme = self.memes[selectedRow]
+        }
+    }
     
     /*
     // MARK: - Navigation
