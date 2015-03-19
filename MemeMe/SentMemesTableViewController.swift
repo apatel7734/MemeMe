@@ -35,6 +35,7 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
     var selectedRow = 0
     //#pragma mark - UITableViewDelegate methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         selectedRow = indexPath.row
     }
     

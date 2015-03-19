@@ -20,6 +20,9 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     
     @IBOutlet weak var shareBarButton: UIBarButtonItem!
     
+    @IBOutlet weak var topToolbar: UIToolbar!
+    @IBOutlet weak var bottomToolBar: UIToolbar!
+    
     let memeTextAttributes = [NSForegroundColorAttributeName: UIColor(white: 1, alpha: 1),NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 30)!,NSStrokeColorAttributeName:UIColor(red: 0, green: 0, blue: 0, alpha: 1)]
     
     
@@ -162,8 +165,12 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     func generateMemedImage() -> UIImage{
         //begin image context
         UIGraphicsBeginImageContext(self.view.frame.size)
+        topToolbar.hidden=true
+        bottomToolBar.hidden = true
         self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        topToolbar.hidden=false
+        bottomToolBar.hidden = false
         UIGraphicsEndImageContext()
         //end image context
         return memedImage
