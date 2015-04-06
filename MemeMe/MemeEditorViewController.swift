@@ -99,12 +99,19 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         
     }
     
-    //pragma mark textfield methods
+    //MARK - TextField Delegate methods
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         return true
     }
     
+    var isEditingTop = false
+    
     func textFieldDidBeginEditing(textField: UITextField) {
+        if(isTopTextClicked(textField)){
+            isEditingTop = true
+        }else{
+            isEditingTop = false
+        }
         textField.text = ""
     }
     
@@ -122,23 +129,23 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         return false
     }
     
-    var alreadyCalled = false
+    var isKeyboardVisible = false
     
     //method being called when keyboard is shown.
     func keyboardWillShow(notification: NSNotification){
-        if(!alreadyCalled){
+        if(!isKeyboardVisible && !isEditingTop){
             self.view.frame.origin.y = self.view.frame.origin.y  - getKeyboardHeight(notification)
             println("keyboardWillShow Y after = \(self.view.frame.origin.y)")
-            alreadyCalled = true
+            isKeyboardVisible = true
         }
     }
     
     //method being called when keyboard is hidden.
     func keyboardWillHide(notification: NSNotification){
-        if(alreadyCalled){
+        if(isKeyboardVisible && !isEditingTop){
             self.view.frame.origin.y += getKeyboardHeight(notification)
             println("keyboardWillHide Y after = \(self.view.frame.origin.y)")
-            alreadyCalled = false
+            isKeyboardVisible = false
         }
     }
     
