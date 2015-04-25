@@ -15,7 +15,7 @@ class SentMemesCollectionViewController: UIViewController,UICollectionViewDelega
     @IBOutlet weak var memeCollectionView: UICollectionView!
     
     override func viewDidLoad() {
-        println("SentMemesCollectionViewController .....")
+        println("SentMemesTableViewController.viewDidLoad()")
         
         super.viewDidLoad()
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -23,6 +23,13 @@ class SentMemesCollectionViewController: UIViewController,UICollectionViewDelega
         
         memeCollectionView.delegate = self
         memeCollectionView.dataSource = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        println("SentMemesTableViewController.viewWillAppear()")
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        memes = appDelegate.memes
+        memeCollectionView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,6 +50,7 @@ class SentMemesCollectionViewController: UIViewController,UICollectionViewDelega
         return memes.count
     }
     
+    var selectedRow = 0
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         //code only push viewcontroller
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -50,17 +58,5 @@ class SentMemesCollectionViewController: UIViewController,UICollectionViewDelega
         memeDetailsVC.meme = self.memes[indexPath.row]
         self.navigationController?.pushViewController(memeDetailsVC, animated: true)
     }
-    
-    
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
     
 }
