@@ -16,7 +16,12 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
     
     
     override func viewDidLoad() {
+        println("SentMemesTableViewController .....")
         super.viewDidLoad()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if(appDelegate.memes.count <=  0){
+            modallyPresentViewController()
+        }
         
         memeTableView.delegate = self
         memeTableView.dataSource = self
@@ -27,12 +32,19 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
         memes = appDelegate.memes
     }
     
+    func modallyPresentViewController(){
+        var storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        var memeEditorVC: UIViewController = storyboard?.instantiateViewControllerWithIdentifier("memeeditorvc") as! UIViewController
+        presentViewController(memeEditorVC, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     var selectedRow = 0
+    
     //#pragma mark - UITableViewDelegate methods
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -53,7 +65,6 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println("memes.count = \(memes.count)")
         return memes.count
     }
     
@@ -64,11 +75,6 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
             let destinationVC = segue.destinationViewController as! MemeDetailsViewController
             destinationVC.meme = self.memes[selectedRow]
         }
-    }
-    
-    
-    @IBAction func newMemeButtonClicked(sender: UIBarButtonItem) {
-        
     }
     
     /*

@@ -15,6 +15,8 @@ class SentMemesCollectionViewController: UIViewController,UICollectionViewDelega
     @IBOutlet weak var memeCollectionView: UICollectionView!
     
     override func viewDidLoad() {
+        println("SentMemesCollectionViewController .....")
+        
         super.viewDidLoad()
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         memes = appDelegate.memes
@@ -49,10 +51,6 @@ class SentMemesCollectionViewController: UIViewController,UICollectionViewDelega
         self.navigationController?.pushViewController(memeDetailsVC, animated: true)
     }
     
-    
-    @IBAction func addNewMemeButtonClicked(sender: AnyObject) {
-        
-    }
     
     
     /*
