@@ -14,7 +14,7 @@ class MemeDetailsViewController: UIViewController {
     var meme: Meme!
     
     override func viewDidLoad() {
-        if let memeImage = meme.memeImage?{
+        if let memeImage = meme.memeImage{
             self.memeImageView.image = memeImage
         }
     }

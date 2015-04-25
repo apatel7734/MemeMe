@@ -11,11 +11,12 @@ import UIKit
 class SentMemesCollectionViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
     var memes: [Meme]!
+    
     @IBOutlet weak var memeCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         memes = appDelegate.memes
         
         memeCollectionView.delegate = self
@@ -29,7 +30,7 @@ class SentMemesCollectionViewController: UIViewController,UICollectionViewDelega
     
     //MARK: -UICollectionView methods
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("memecollectioncell", forIndexPath: indexPath) as MemeCollectionViewCell
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("memecollectioncell", forIndexPath: indexPath)as! MemeCollectionViewCell
         
         cell.memeImageView.image = self.memes[indexPath.row].memeImage
         
@@ -43,10 +44,16 @@ class SentMemesCollectionViewController: UIViewController,UICollectionViewDelega
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         //code only push viewcontroller
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
-        var memeDetailsVC = storyboard.instantiateViewControllerWithIdentifier("memedetailsvc") as MemeDetailsViewController
+        var memeDetailsVC = storyboard.instantiateViewControllerWithIdentifier("memedetailsvc")as! MemeDetailsViewController
         memeDetailsVC.meme = self.memes[indexPath.row]
         self.navigationController?.pushViewController(memeDetailsVC, animated: true)
     }
+    
+    
+    @IBAction func addNewMemeButtonClicked(sender: AnyObject) {
+        
+    }
+    
     
     /*
     // MARK: - Navigation

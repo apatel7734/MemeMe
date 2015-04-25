@@ -23,6 +23,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     @IBOutlet weak var topToolbar: UIToolbar!
     @IBOutlet weak var bottomToolBar: UIToolbar!
     
+    
     let memeTextAttributes = [NSForegroundColorAttributeName: UIColor(white: 1, alpha: 1),NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 30)!,NSStrokeColorAttributeName:UIColor(red: 0, green: 0, blue: 0, alpha: 1)]
     
     
@@ -99,67 +100,84 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         
     }
     
+    //------------------------------------
     //MARK - TextField Delegate methods
+    //------------------------------------
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
         return true
     }
     
     var isEditingTop = false
     
     func textFieldDidBeginEditing(textField: UITextField) {
+        
         if(isTopTextClicked(textField)){
             isEditingTop = true
         }else{
             isEditingTop = false
         }
-        textField.text = ""
+        
+        
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+
         textField.resignFirstResponder()
         return true
+        
     }
     
     
     //check if top textfield is clicked or bottom.
     func isTopTextClicked(textField: UITextField) -> Bool{
+        
         if(textField.restorationIdentifier == "top"){
             return true
         }
         return false
+        
     }
     
     var isKeyboardVisible = false
     
     //method being called when keyboard is shown.
     func keyboardWillShow(notification: NSNotification){
+
         if(!isKeyboardVisible && !isEditingTop){
             self.view.frame.origin.y = self.view.frame.origin.y  - getKeyboardHeight(notification)
             println("keyboardWillShow Y after = \(self.view.frame.origin.y)")
             isKeyboardVisible = true
         }
+        
     }
     
     //method being called when keyboard is hidden.
     func keyboardWillHide(notification: NSNotification){
+        
         if(isKeyboardVisible && !isEditingTop){
             self.view.frame.origin.y += getKeyboardHeight(notification)
             println("keyboardWillHide Y after = \(self.view.frame.origin.y)")
             isKeyboardVisible = false
         }
+        
     }
     
     //get keyboard height
     func getKeyboardHeight(notification: NSNotification) -> CGFloat{
+        
         let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as NSValue // of CGRect
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey]as! NSValue // of CGRect
         return keyboardSize.CGRectValue().height
+        
     }
     
     //subscribe to keyboard hide and show notifications
     func subscribeToKeyboardNotifications(){
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        
     }
     
     //unsubscribe to keyboard hide and show notifications
@@ -199,9 +217,14 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     func saveMeme(memedImage: UIImage){
         var meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, origImage: memeImageView.image!, memeImage: memedImage)
         let object = UIApplication.sharedApplication().delegate
-        let appDelegate = object as AppDelegate
+        let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
     }
+    
+    @IBAction func cancelButtonClicked(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
 }
 

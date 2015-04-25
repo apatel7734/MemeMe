@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Er5-1P-9wJ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0A4F3CD1-11C5-4843-8D83-15B988E18C15" translatesAutoresizingMaskIntoConstraints="NO" id="Vzr-xE-9M4" userLabel="ImageView">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="572569E4-1AAE-4F36-88F6-B3F1788B6DE7" translatesAutoresizingMaskIntoConstraints="NO" id="Vzr-xE-9M4" userLabel="ImageView">
                                 <rect key="frame" x="0.0" y="28" width="600" height="572"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
@@ -56,12 +56,12 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="avr-yW-Iut"/>
                                     <barButtonItem title="Cancel" id="N57-WQ-T3v">
                                         <connections>
-                                            <segue destination="Er5-1P-9wJ" kind="show" id="15L-Gn-Nz5"/>
+                                            <action selector="cancelButtonClicked:" destination="vXZ-lx-hvc" id="lJE-Q1-lKt"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sYz-Vh-ruR" userLabel="TextField bottom">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="bottom" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sYz-Vh-ruR" userLabel="TextField bottom">
                                 <rect key="frame" x="16" y="491" width="568" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="AbG-CL-alJ"/>
@@ -111,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-479" y="24"/>
+            <point key="canvasLocation" x="2523" y="72"/>
         </scene>
         <!--Collection View Controller-->
         <scene sceneID="fe4-Os-AcA">
@@ -170,7 +170,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="ab8-z4-O7g" secondAttribute="trailing" constant="-16" id="kke-Td-oIp"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="CollectionView" id="Pkt-yY-ZzP"/>
+                    <navigationItem key="navigationItem" title="Sent Memes View" id="Pkt-yY-ZzP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="5va-zw-rFK">
+                            <connections>
+                                <action selector="addNewMemeButtonClicked:" destination="NjF-Ik-cMi" id="5fg-aa-Ox5"/>
+                                <segue destination="vXZ-lx-hvc" kind="presentation" id="C9v-de-Icn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="memeCollectionView" destination="ab8-z4-O7g" id="hbW-D9-eVB"/>
                     </connections>
@@ -179,7 +186,7 @@
             </objects>
             <point key="canvasLocation" x="1801" y="335"/>
         </scene>
-        <!--TableView-->
+        <!--Sent Memes View-->
         <scene sceneID="3LJ-Ok-WtM">
             <objects>
                 <viewController id="ChM-6t-8Jk" customClass="SentMemesTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -279,7 +286,14 @@
                             <constraint firstItem="ODe-LK-uiX" firstAttribute="bottom" secondItem="9Kf-bs-mo0" secondAttribute="bottomMargin" id="ten-RQ-o4U"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="TableView" id="ZVn-Ce-bFg"/>
+                    <navigationItem key="navigationItem" title="Sent Memes View" id="ZVn-Ce-bFg">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="lZU-wG-3Px">
+                            <connections>
+                                <action selector="newMemeButtonClicked:" destination="ChM-6t-8Jk" id="MNV-Ra-Max"/>
+                                <segue destination="vXZ-lx-hvc" kind="presentation" id="aZT-1T-Xja"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="memeTableView" destination="ODe-LK-uiX" id="K6y-Qt-mCq"/>
                     </connections>
@@ -319,7 +333,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iX4-O2-oMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2553" y="-184"/>
+            <point key="canvasLocation" x="3165" y="-356"/>
         </scene>
         <!--Tab Bar Controller -->
         <scene sceneID="9b1-SJ-KVF">
@@ -380,7 +394,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="0A4F3CD1-11C5-4843-8D83-15B988E18C15" width="460" height="230">
+        <image name="572569E4-1AAE-4F36-88F6-B3F1788B6DE7" width="460" height="230">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -7488,4 +7502,7 @@ AABCAAAAAAAAAAAAAAAAAAZ/cw
 </mutableData>
         </image>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="aZT-1T-Xja"/>
+    </inferredMetricsTieBreakers>
 </document>

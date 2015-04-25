@@ -23,7 +23,7 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
     }
     
     override func viewWillAppear(animated: Bool) {
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         memes = appDelegate.memes
     }
     
@@ -42,7 +42,7 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
     
     //#pragma mark - UITableViewDatasource delegate methods
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("memetablecell") as MemeTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("memetablecell") as! MemeTableViewCell
         var meme = self.memes[indexPath.row]
         
         cell.memeUITextField.text = "\(meme.topText!) \(meme.bottomText!)"
@@ -61,9 +61,14 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "tomemedetailssegue"){
-            let destinationVC = segue.destinationViewController as MemeDetailsViewController
+            let destinationVC = segue.destinationViewController as! MemeDetailsViewController
             destinationVC.meme = self.memes[selectedRow]
         }
+    }
+    
+    
+    @IBAction func newMemeButtonClicked(sender: UIBarButtonItem) {
+        
     }
     
     /*
