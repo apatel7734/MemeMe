@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="82B86B9D-5082-4D2F-A331-1375E442B860" translatesAutoresizingMaskIntoConstraints="NO" id="Vzr-xE-9M4" userLabel="ImageView">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EE7ADA4F-897B-48D1-B84D-56C70D386ADE" translatesAutoresizingMaskIntoConstraints="NO" id="Vzr-xE-9M4" userLabel="ImageView">
                                 <rect key="frame" x="0.0" y="28" width="600" height="572"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
@@ -61,7 +61,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="bottom" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sYz-Vh-ruR" userLabel="TextField bottom">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="bottom" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sYz-Vh-ruR" userLabel="TextField bottom">
                                 <rect key="frame" x="16" y="491" width="568" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="AbG-CL-alJ"/>
@@ -69,7 +69,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="top" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QVZ-0U-MwN" userLabel="TextField top">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="top" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QVZ-0U-MwN" userLabel="TextField top">
                                 <rect key="frame" x="16" y="107" width="568" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="DS4-vr-Jeo"/>
@@ -358,7 +358,7 @@
         <scene sceneID="6d6-v7-QBK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xGa-17-wrS" userLabel="NavigationController 1 TableView" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="mostRecent" id="LIq-6Z-cb8"/>
+                    <tabBarItem key="tabBarItem" image="table" id="LIq-6Z-cb8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oyK-Sr-Qnp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -377,7 +377,7 @@
         <scene sceneID="gow-1e-Lgx">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hQ8-I5-kf6" userLabel="NavigationController 2 Collection View " sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="history" id="9bB-3k-YZw"/>
+                    <tabBarItem key="tabBarItem" image="collection" id="9bB-3k-YZw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d4a-8c-gu4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -394,7 +394,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="82B86B9D-5082-4D2F-A331-1375E442B860" width="460" height="230">
+        <image name="EE7ADA4F-897B-48D1-B84D-56C70D386ADE" width="460" height="230">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -7501,6 +7501,8 @@ Bn8zAAZ/NQAGfzcABn88AAZ/RAAGf0cABn9MAAZ/VAAGf1cABn9pAAZ/bAAGf3EAAAAAAAAEAQAAAAAA
 AABCAAAAAAAAAAAAAAAAAAZ/cw
 </mutableData>
         </image>
+        <image name="collection" width="29" height="30"/>
+        <image name="table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="C9v-de-Icn"/>
