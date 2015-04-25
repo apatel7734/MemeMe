@@ -18,6 +18,7 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
     override func viewDidLoad() {
         println("SentMemesTableViewController .....")
         super.viewDidLoad()
+
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         if(appDelegate.memes.count <=  0){
             modallyPresentViewController()

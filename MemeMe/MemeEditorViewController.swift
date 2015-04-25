@@ -35,22 +35,22 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         }
         shareBarButton.enabled = false
         
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        self.subscribeToKeyboardNotifications()
-        
+        // textField configurations
         // Do any additional setup after loading the view, typically from a nib.
         topTextField.delegate = self
         topTextField.text = "TOP"
         topTextField.defaultTextAttributes = memeTextAttributes
         topTextField.textAlignment = .Center
         
-        
         bottomTextField.delegate = self
         bottomTextField.text = "BOTTOM"
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = .Center
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.subscribeToKeyboardNotifications()
         
         var alreadyCalled = false
     }
@@ -122,7 +122,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-
+        
         textField.resignFirstResponder()
         return true
         
@@ -143,7 +143,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     
     //method being called when keyboard is shown.
     func keyboardWillShow(notification: NSNotification){
-
+        
         if(!isKeyboardVisible && !isEditingTop){
             self.view.frame.origin.y = self.view.frame.origin.y  - getKeyboardHeight(notification)
             println("keyboardWillShow Y after = \(self.view.frame.origin.y)")
@@ -219,6 +219,8 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
+        
+        UIAlertView(title: "", message: "Success!", delegate: nil, cancelButtonTitle: "OK").show()
     }
     
     @IBAction func cancelButtonClicked(sender: AnyObject) {
