@@ -15,7 +15,7 @@ class SentMemesCollectionViewController: UIViewController,UICollectionViewDelega
     @IBOutlet weak var memeCollectionView: UICollectionView!
     
     override func viewDidLoad() {
-        println("SentMemesTableViewController.viewDidLoad()")
+        println("SentMemesCollectionViewController.viewDidLoad()")
         
         super.viewDidLoad()
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -26,7 +26,7 @@ class SentMemesCollectionViewController: UIViewController,UICollectionViewDelega
     }
     
     override func viewWillAppear(animated: Bool) {
-        println("SentMemesTableViewController.viewWillAppear()")
+        println("SentMemesCollectionViewController.viewWillAppear()")
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         memes = appDelegate.memes
         memeCollectionView.reloadData()
@@ -50,11 +50,11 @@ class SentMemesCollectionViewController: UIViewController,UICollectionViewDelega
         return memes.count
     }
     
-    var selectedRow = 0
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         //code only push viewcontroller
-        var storyboard = UIStoryboard(name: "Main", bundle: nil)
-        var memeDetailsVC = storyboard.instantiateViewControllerWithIdentifier("memedetailsvc")as! MemeDetailsViewController
+//        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+        var memeDetailsVC = self.storyboard?.instantiateViewControllerWithIdentifier("memedetailsvc")as! MemeDetailsViewController
         memeDetailsVC.meme = self.memes[indexPath.row]
         self.navigationController?.pushViewController(memeDetailsVC, animated: true)
     }

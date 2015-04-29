@@ -51,8 +51,6 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate,UIImagePic
     
     override func viewWillAppear(animated: Bool) {
         self.subscribeToKeyboardNotifications()
-        
-        var alreadyCalled = false
     }
     
     

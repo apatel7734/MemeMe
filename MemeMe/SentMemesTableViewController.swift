@@ -36,9 +36,9 @@ class SentMemesTableViewController: UIViewController,UITableViewDelegate,UITable
     }
     
     func modallyPresentViewController(){
-        var storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        var memeEditorVC: UIViewController = storyboard?.instantiateViewControllerWithIdentifier("memeeditorvc") as! UIViewController
-        presentViewController(memeEditorVC, animated: true, completion: nil)
+//        var storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        var memeEditorVC: UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("memeeditorvc") as! UIViewController
+        self.parentViewController?.presentViewController(memeEditorVC, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
